@@ -7,7 +7,7 @@ $db_name = "mailinglist";
 
 $con = mysqli_connect($host,$db_username,$db_password,$db_name) or die("Error could not connect to database");
 
-echo "you have connected to the database: " . $db_name;
+
 
 
 

@@ -1,11 +1,17 @@
 <?php
 
+
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'] )) {
 	header('location:scripts/login.php');
 }
 
+if (!$_SESSION['wrongusername'] || !$_SESSION['wrongemail']) {
+	$_SESSION['wrongusername'] = "";
+	$_SESSION['wrongemail'] = "";
+	# code...
+}
 
 ?>
 
@@ -31,6 +37,8 @@ if (!isset($_SESSION['username'])) {
 <body>
 	<div class="page-header">
   <h1>PHP Exercise<small>index.php</small></h1>
+
+  <a href="scripts/logout.php" class="btn btn-danger" style="position:absolute; top: 5px; right: 5px">Log Out</a>
 </div>
 	<div class = "container">
 		<div class="row">
@@ -42,28 +50,22 @@ if (!isset($_SESSION['username'])) {
 
 					<div class="input-group input-group-lg">
 				  		<span class="input-group-addon" id="sizing-addon1">Username</span>
-				  		<input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+				  		<input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="sizing-addon1"value="<?php echo $_SESSION['wrongusername'];?>" >
 					</div><br>
 
 					<div class="input-group input-group-lg">
 				  		<span class="input-group-addon" id="sizing-addon1">Email</span>
-				  		<input type="text" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+				  		<input type="text" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" value="<?php echo $_SESSION['wrongemail'];?>">
 					</div><br>
 
 					<input type="submit" name="submit" class="btn btn-success"></input>
 				</form>	
 
 
-				<h2>Delete User from Database</h2>
-				<form action="scripts/removeFromDB.php" method="POST">
+				
+				<br><br><a href="scripts/viewmailinglist.php" class="btn btn-success">View Email List</a>
 
-					<div class="input-group input-group-lg">
-				  		<span class="input-group-addon" id="sizing-addon1">Username</span>
-				  		<input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-					</div><br>
 
-					<input type="submit" name="delete" value="delete" class="btn btn-danger"></input>
-				</form>	
 			</div>
 		</div>
 	</div>
